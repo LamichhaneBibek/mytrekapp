@@ -1,0 +1,59 @@
+from flask import Flask, render_template, request
+
+from flask_mysqldb import MySQL
+
+app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'db_trekapp'
+
+mysql = MySQL(app)
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/doLogin', methods=['POST'])
+def doLogin():
+    email = request.form['email']
+    password = request.form['pwd']
+
+    cursor = mysql.connection.cursor()
+    resp = cursor.execute('''SELECT * FROM users WHERE email=%s and password=%s;''',(email,password))
+    user = cursor.fetchall()
+    if resp == 1:
+        return render_template('index.html',result = user)
+    else:
+        return render_template('login.html',result = "Invalid Credentials")
+@app.route('/doRegister',methods=['POST'])
+def doRegister():
+    fullName = request.form['fullName']
+    email = request.form['email']
+    phoneNumber = request.form['phone']
+    address = request.form['address']
+    password = request.form['pwd']
+
+    cursor = mysddddddql.connection.cursor()
+    cursor.exeii
+    cute('''INSERT INT  O users VALUES(NULL,%s,%s,%s,%s,%s)''')
+    mysql.connection.commit()
+    cursor.close()
+
+    return render_template('login.html',result="Registered Successfully")
+
+app.run()
+
+<!-- <h3 class="title__small">{% row.1 %}</h3> -->
+
+cursor = mysql.connection.cursor()
+    resp = cursor.execute('''SELECT td.id as 'SNO', td.title as 'Title', td.days as 'Days', td.difficulty as 'Difficulty', td.totalCost as 'Total Cost', td.upvotes as 'Upvotes', u.fullName as 'Full Name' FROM 'trek_destinations' as td join 'user' as u on td.user_id = u.id;''')

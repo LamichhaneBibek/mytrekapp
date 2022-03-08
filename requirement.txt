@@ -1,0 +1,10 @@
+cachelib==0.6.0
+click==8.0.4
+Flask==2.0.3
+Flask-MySQLdb==1.0.1
+Flask-Session==0.4.0
+itsdangerous==2.1.0
+Jinja2==3.0.3
+MarkupSafe==2.1.0
+mysqlclient==2.1.0
+Werkzeug==2.0.3
