@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, intial-scale=1">
+<title>Trek-App</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+<style type="text/css" style="display: none">
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html {
+        font: normal 16px sans-serif;
+        color: #555;
+    }
+
+    ul,
+    nav {
+        list-style: none;
+    }
+
+    /*nav-bar style*/
+    nav {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        opacity: 0.75;
+        margin: 0 15px;
+        color: white;
+        cursor: pointer;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
+
+    a.btn {
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        background-color: #3f51b5;
+        opacity: 1;
+        margin-top: 10px;
+        color: white
+    }
+
+
+    section {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 100px;
+    }
+
+    /*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Header Configurations
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+
+    header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 35px 100px 0;
+        -webkit-animation: 1s fadein 0.5s forwards;
+        animation: 1s fadein 0.5s forwards;
+        opacity: 0.5;
+        color: white;
+    }
+
+    @-webkit-keyframes fadein {
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadein {
+        100% {
+            opacity: 1;
+        }
+    }
+
+    header h2 {
+        font-family: "Quicksand, sans-serif";
+        color: white;
+    }
+
+    header nav {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-right: -15px;
+    }
+
+    header nav li {
+        margin: 0 15px;
+        color: white;
+    }
+
+    @media (max-width: 1000px) {
+        header {
+            padding: 20px 50px;
+        }
+    }
+
+
+    @media (max-width: 700px) {
+        header {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        header h2 {
+            margin-bottom: 15px;
+        }
+    }
+
+
+
+    /*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Cover and Image Animation configuration
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+    .hero {
+        position: relative;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100vh;
+        color: white;
+    }
+
+    .hero .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: -1;
+        background-color: #80a3db;
+        -webkit-animation: 15s change 1s forwards;
+        animation: 15s change 1s forwards;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes change {
+        0% {
+            background-image: url(https://wallpaper-house.com/data/out/7/wallpaper2you_139824.jpg);
+        }
+
+        25% {
+            background-image: url(http://www.hdnicewallpapers.com/Walls/Big/Mountain/Wonderful_Nature_Look_of_Mountain_HD_Photos.jpg);
+        }
+
+        50% {
+            background-image: url(https://wallpapersite.com/images/wallpapers/dark-mountains-2560x1440-stars-hd-6406.jpg);
+
+        }
+
+        75% {
+            background-image: url(https://images7.alphacoders.com/290/thumb-1920-290072.jpg);
+
+        }
+
+        100% {
+            background-image: url(https://wallpapercave.com/wp/R6ZWbAb.jpg);
+
+        }
+    }
+
+    .hero h1 {
+        font: bold 60px "Open Sans", sans-serif;
+        margin-bottom: 40px;
+        color: white;
+    }
+
+    .hero h3 {
+        font: normal 28px "Open Sans", sans-serif;
+        margin-bottom: 40px;
+        color: white;
+    }
+
+    .hero a.btn {
+        padding: 20px 46px;
+    }
+
+    .hero-content-area {
+        opacity: 0;
+        margin-top: 100px;
+        -webkit-animation: 1s slidefade 1s forwards;
+        animation: 1s slidefade 1s forwards;
+    }
+
+    @-webkit-keyframes slidefade {
+        100% {
+            opacity: 1;
+            margin: 0;
+        }
+    }
+
+    @keyframes slidefade {
+        100% {
+            opacity: 1;
+            margin: 0;
+        }
+    }
+
+
+    .grid {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    hr {
+        width: 100%;
+        height: 2px;
+        background-color: #3f51b5;
+        border: 0;
+        margin-bottom: 50px;
+    }
+
+
+
+    @media (max-width: 800px) {
+
+        .hero {
+            min-height: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+        }
+
+        .hero h3 {
+            font-size: 24px;
+        }
+
+        .hero a.btn {
+            padding: 15px 40px;
+        }
+
+    }
+</style>
+
+</head>
+
+<body>
+    <header>
+        <h2 href="#"> Trek Travel</h2>
+        <nav>
+            <li><a href="/">Home</a> </li>
+            <li><a href="/treks">Treks Destination</a> </li>
+            {% if result['logged_in_user'] %}
+            <li><a href="/addTrek">Add Trek</a> </li>
+            <li><a href="/addIternary">Add Iternary</a> </li>
+            <li><a href="#">Welcome, {{ result['logged_in_user'] }}</a> </li>
+            <li><a href="/logout">Logout</a> </li>
+            {% else %}
+            <li><a href="/login">Login</a> </li>
+            <li><a href="/register">Register</a> </li>
+            {% endif %}
+          
+
+
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="background-image"
+            style="background-image: url(https://wallpaper-house.com/data/out/7/wallpaper2you_139824.jpg)"></div>
+        <div class="hero-content-area">
+            <h1>Mountain Travel</h1>
+            <h3> Unmissable Adventure Tours Around the Nepal</h3>
+            <a href="/treks" class="btn">Treks</a>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

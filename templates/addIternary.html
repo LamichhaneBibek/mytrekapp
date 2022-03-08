@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Iternary</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/static/style.css">
+
+  <style>
+    body {
+      background: #59ABE3;
+      margin: 0
+    }
+
+    .form {
+      width: 600px;
+      height: parent;
+      background: #e6e6e6;
+      border-radius: 8px;
+      box-shadow: 0 0 40px -10px #000;
+      margin: calc(50vh - 220px) auto;
+      padding: 20px 30px;
+      max-width: calc(100vw - 40px);
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+      position: relative
+    }
+
+    h2 {
+      margin: 10px 0;
+      padding-bottom: 10px;
+      width: 180px;
+      color: #78788c;
+      border-bottom: 3px solid #78788c
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background: none;
+      outline: none;
+      resize: none;
+      border: 0;
+      font-family: 'Montserrat', sans-serif;
+      transition: all .3s;
+      border-bottom: 2px solid #bebed2
+    }
+
+    input:focus {
+      border-bottom: 2px solid #78788c
+    }
+
+    p:before {
+      content: attr(type);
+      display: block;
+      margin: 28px 0 0;
+      font-size: 14px;
+      color: #5a5a5a
+    }
+
+    button {
+      float: right;
+      padding: 8px 12px;
+      margin: 8px 0 0;
+      font-family: 'Montserrat', sans-serif;
+      border: 2px solid #78788c;
+      background: 0;
+      background-color: aliceblue;
+      color: #5a5a6e;
+      cursor: pointer;
+      transition: all .3s
+    }
+
+    button:hover {
+      background: #78788c;
+      color: #fff
+    }
+
+    div {
+      content: 'Hi';
+      position: absolute;
+      bottom: -15px;
+      right: -20px;
+      background: #50505a;
+      color: #fff;
+      width: 320px;
+      padding: 16px 4px 16px 0;
+      border-radius: 6px;
+      font-size: 13px;
+      box-shadow: 10px 10px 40px -14px #000
+    }
+
+    span {
+      margin: 0 5px 0 15px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2 href="#"> Trek Travel</h2>
+    <nav>
+      <li><a href="/">Home</a> </li>
+      <li><a href="/treks">Treks Destination</a> </li>
+      {% if result['logged_in_user'] %}
+      <li><a href="/addTrek">Add Trek</a> </li>
+      <li><a href="/addIternary">Add Iternary</a> </li>
+      <li><a href="#">Welcome, {{ result['logged_in_user'] }}</a> </li>
+      <li><a href="/logout">Logout</a> </li>
+      {% else %}
+      <li><a href="/login">Login</a> </li>
+      <li><a href="/register">Register</a> </li>
+      {% endif %}
+
+    </nav>
+  </header>
+ 
+  <section class="hero">
+    <form action="/doAddIternary" class="form" method="POST">
+      <h2>Add Iternaries</h2>
+      <br>
+      <p id="iternaries"> </p>
+      <br>
+      <label for="title"><b>Trek Destination</b></label>
+      <select onchange="getIternaries()" name="trek_destination_id" id="trek_destination_id" required>
+        <option value="0">Select an option..</option>
+        {% for row in result['treks'] %}
+        <option value="{{row[0]}}">{{row[1]}}</option>
+        {% endfor %}
+      </select>
+     
+      <p type="Title:"><input type="text" placeholder="Enter Title.." name="title" id="title" required></input></p>
+      <p type="Days:"><input type="number" placeholder="Enter Days.." name="days" id="days" required></input></p>
+      <p type="Start Place:"><input type="text" placeholder="Enter Start Place.." name="startPlace" id="startPlace"
+          required></input></p>
+      <p type="End Place:"><input type="text" placeholder="Enter End Place.." name="endPlace" id="endPlace"
+          required></input></p>
+      <p type="Description">
+        <textarea type="text" placeholder="Enter Description.." name="description" id="description" required=""
+          style="width: 542px; height: 103px;"></textarea>
+      </p>
+      <p type="Duration:"><input type="text" placeholder="Enter Duration.." name="duration" id="duration"
+          required></input></p>
+      <p type="Total Cost:"><input type="number" placeholder="Enter Cost.." name="cost" id="cost" required></input></p>
+
+
+      <button>Add Iternary</button>
+
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+      function getIternaries() {
+        var trekId = document.getElementById("trek_destination_id").value;
+        // document.getElementById("view_iternaries_link").href="/iternary/"+val;
+        $.ajax('/iternary/' + trekId,
+          {
+            success: function (data, status, xhr) {
+              $('#iternaries').html(data);
+            }
+          });
+      }
+
+
+
+
+    </script>
+  </section>
+</body>
+
+</html>

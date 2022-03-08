@@ -1,0 +1,277 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Trek Details</title>
+  <style>
+    html {
+      font-size: 16px;
+      font-family: 'Open Sans', sans-serif;
+      height: 100%;
+    }
+
+    body {
+      background-color: lightgray;
+      height: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    ul,
+    li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    audio,
+    canvas,
+    iframe,
+    img,
+    svg,
+    video,
+    textarea {
+      vertical-align: middle;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    section {
+      position: relative;
+    }
+
+    input,
+    select,
+    button {
+      outline: none;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 810px;
+      width: 100%;
+    }
+
+    .product {
+      display: flex;
+      background-color: #524b48;
+    }
+
+    .product__photo-wrapper {
+      display: flex;
+      align-items: center;
+      flex: 0 0 380px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .product__photo {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .product__main {
+      background-color: rgb(90, 82, 82);
+      padding: 20px;
+      width: 100%;
+    }
+
+    .product__name {
+      color: #2d91a1;
+
+      margin-bottom: 20px;
+    }
+
+    .product__info {
+      margin-bottom: 30px
+    }
+
+    .product__info-line {
+      border-bottom: 1px solid #464242;
+      display: flex;
+      padding: 5px;
+    }
+
+    .product__info-label {
+
+      flex: 0 0 150px;
+      color: #211f1f;
+    }
+
+    .product__price {
+      margin-bottom: 30px;
+    }
+
+    .product__actions *:not(:last-child) {
+      margin-right: 10px;
+      display: flex;
+    }
+
+    .product__actions {
+      margin-bottom: 20px;
+      display: flex;
+    }
+
+    .product__decription {
+      margin-bottom: 20px;
+
+    }
+
+    .product__rating {
+      margin-bottom: 20px;
+
+    }
+
+    .rating {
+      color: #afafaf;
+      display: flex;
+    }
+
+    .rating__stars {
+      color: #ffe404;
+      display: flex;
+      margin-right: 20px;
+    }
+
+    .rating__count {
+      margin-right: 10px;
+    }
+
+    .price {
+      font-size: 16px;
+    }
+
+    .price__current {
+      margin-bottom: 10px;
+      color: #4493a0;
+      display: block;
+      font-size: 50px
+    }
+
+
+    .btn {
+      flex-shrink: 0;
+      height: 40px;
+      padding: 10px 30px;
+      line-height: 20px;
+      border: 0;
+      color: rgb(61, 55, 55)
+    }
+
+
+    .btn--attention {
+      background-color: #2d91a1;
+    }
+
+    .btn--size--wide {
+      flex: 1;
+    }
+
+    .btn--text-uppercase {
+      text-transform: uppercase
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2 href="#"> Trek Travel</h2>
+    <nav>
+      <li><a href="/">Home</a> </li>
+      <li><a href="/treks">Treks Destination</a> </li>
+      {% if result['logged_in_user'] %}
+      <li><a href="/addTrek">Add Trek</a> </li>
+      <li><a href="/addIternary">Add Iternary</a> </li>
+      <li><a href="#">Welcome, {{ result['logged_in_user'] }}</a> </li>
+      <li><a href="/logout">Logout</a> </li>
+      {% else %}
+      <li><a href="/login">Login</a> </li>
+      <li><a href="/register">Register</a> </li>
+      {% endif %}
+
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="product">
+        <div class="product__photo-wrapper">
+          <img src="https://picsum.photos/340/500" alt="PHoto product" class="product_photo">
+        </div>
+
+
+        <div class="product__main">
+          <h2 class="product__name">{{ result['trek'].1 }}</h2>
+          <div class="product__rating rating">
+            <div class="rating__stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <span class="rating__count">{{ result['trek'].5 }} Upvotes</span>
+
+          </div>
+          <div class="product__info">
+            <div class="product__info-line">
+              <span class="product__info-label">Days</span>
+              <span class="product__info-value">{{ result['trek'].2}}</span>
+            </div>
+            <div class="product__info-line">
+              <span class="product__info-label">Difficulty</span>
+              <span class="product__info-value">{{ result['trek'].3}}</span>
+            </div>
+
+          </div>
+          <div class="product__price price">
+            <span class="price__current">रु{{ result['trek'].4}}</span>
+
+          </div>
+          <div class="product__actions">
+
+            <button class="btn btn--attention btn--size--wide btn--text-uppercase">{{ result['trek'].6}}</button>
+          </div>
+          <div class="product__decription">
+            {% for row in result['iternaries'] %}
+            <p>{{ row.1 }}</p>
+            {% endfor %}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
