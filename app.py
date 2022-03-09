@@ -1,6 +1,4 @@
-from email.headerregistry import Address
-from pickle import FALSE
-from unittest import result
+
 from flask import Flask, render_template, request, session, redirect
 
 from flask_mysqldb import MySQL
@@ -16,7 +14,7 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'db_trekapp'
 
 # session settings
-app.config["SESSION_PERMANENT"] = FALSE
+app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
@@ -28,8 +26,8 @@ def index():
     logged_in_user = None
     if session.get("email"):
         logged_in_user = session["email"]
-    
-    return render_template("index.html",result={'logged_in_user': logged_in_user})
+
+    return render_template("index.html", result={'logged_in_user': logged_in_user})
 
 
 # @app.route('/home')
@@ -37,7 +35,7 @@ def index():
 #     logged_in_user = None
 #     if session.get("email"):
 #         logged_in_user = session["email"]
-    
+
 #     return render_template("home.html",result=logged_in_user)
 
 
@@ -75,13 +73,13 @@ def doLogin():
 def doRegister():
     fullName = request.form['fullName']
     email = request.form['email']
-    phoneNumber = request.form['phone']
+    cNumber = request.form['cNumber']
     address = request.form['address']
-    password = request.form['pwd']
+    password = request.form['password']
 
     cursor = mysql.connection.cursor()
     cursor.execute('''INSERT INTO users VALUES(NULL,%s,%s,%s,%s,%s)''',
-                   (fullName, address, email, phoneNumber, password))
+                   (fullName, email, cNumber, address, password))
     mysql.connection.commit()
     cursor.close()
 
@@ -162,6 +160,7 @@ def doAddTrek():
 
     return redirect('/treks')
 
+
 @app.route('/addIternary')
 def addIternary():
     logged_in_user = None
@@ -177,7 +176,8 @@ def addIternary():
     treks = cursor.fetchall()
     cursor.close()
 
-    return render_template('test2.html', result={'treks':treks,'logged_in_user': logged_in_user})
+    return render_template('addIternary.html', result={'treks': treks, 'logged_in_user': logged_in_user})
+
 
 @app.route('/doAddIternary', methods=['POST'])
 def doAddIternary():
@@ -185,7 +185,8 @@ def doAddIternary():
     if session.get("email"):
         logged_in_user = session["email"]
 
-    trek_destination_id = request.form['trek_destination_id']
+        
+    trekId = request.form['trekId']
     title = request.form['title']
     days = request.form['days']
     startPlace = request.form['startPlace']
@@ -194,18 +195,31 @@ def doAddIternary():
     duration = request.form['duration']
     cost = request.form['cost']
 
+    print(trekId)
+    print(title)
+    print(days)
+    print(startPlace)
+    print(endPlace)
+    print(description)
+    print(duration)
+    print(cost)
+
+
+
 
     cursor = mysql.connection.cursor()
     cursor.execute('''INSERT INTO iternaries VALUES(NULL,%s,%s,%s,%s,%s,%s,%s,%s)''',
-                   (title, days, startPlace, endPlace, description, duration, cost, trek_destination_id))
+                   (title, days, startPlace, endPlace, description, duration, cost, trekId))
     mysql.connection.commit()
     cursor.close()
 
     return redirect('/treks')
 
+
 def __getUserIdByEmail(email):
 
     pass
+
 
 @app.route('/iternary/<int:trekId>')
 def getIternarybyTrekId(trekId):
@@ -217,8 +231,7 @@ def getIternarybyTrekId(trekId):
 
     cursor.close()
 
-    return render_template('iternary.html', result={"trekId":trekId, "iternaries": iternaries})
-
+    return render_template('iternary.html', result={"trekId": trekId, "iternaries": iternaries})
 
 
 if __name__ == '__main__':
