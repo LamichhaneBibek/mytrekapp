@@ -239,7 +239,7 @@
           </div>
         </div>
         <p>Description</p>
-        <textarea rows="5" id="description"></textarea>
+        <textarea rows="5" name="description" id="description"></textarea>
         <div class="item">
           <p>Duration</p>
           <div class="name-item">
@@ -264,7 +264,7 @@
 
   <script>
     function getIternaries() {
-      var trekId = document.getElementById("trek_destination_id").value;
+      var trekId = document.getElementById("trekId").value;
       // document.getElementById("view_iternaries_link").href="/iternary/"+val;
       $.ajax('/iternary/' + trekId,
         {

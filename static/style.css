@@ -149,7 +149,7 @@ Cover and Image Animation configuration
     justify-content: center;
     text-align: center;
     min-height: 100vh;
-    color: white;
+    color: rgb(20, 19, 19);
 }
 
 .hero .background-image {
@@ -195,13 +195,13 @@ Cover and Image Animation configuration
 .hero h1 {
     font: bold 60px "Open Sans", sans-serif;
     margin-bottom: 40px;
-    color: white;
+    color: rgb(17, 16, 16);
 }
 
 .hero h3 {
     font: normal 28px "Open Sans", sans-serif;
     margin-bottom: 40px;
-    color: white;
+    color: rgb(17, 16, 16);
 }
 
 .hero a.btn {

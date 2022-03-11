@@ -1,0 +1,24 @@
+
+        {% for row in result['treks'] %}
+        <div class="product">
+          <a href="/trek/{{row.0}}">
+            <div class="image-box">
+              <div class="images" id="image-1"></div>
+            </div>
+            <div class="text-box">
+              <h2 class="item">{{ row.0 }}</h2>
+              <h3 class="price">Days: {{ row.2 }}</h3>
+        
+              <h4 class="price">Total Cost: {{ row.4 }}</h4>
+              <p class="description">{{ row.1 }} - {{ row.3 }}</p>
+              <h5 class="price">Upvotes: {{ row.5 }}</h5>
+              <button type="button" name="item-1-button" id="item-1-button">{{ row.1 }}</button>
+              {% if result["userId"] == row.6 %}
+             
+        <a href="/editTrek/{{row.0}}">Edit</a>
+        <a onclick=" return confirm('Are you sure You want to delete this?')" href="/doDeleteTrek/{{row.0}}">Delete</a>
+        {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
